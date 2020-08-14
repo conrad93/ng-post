@@ -1,0 +1,27 @@
+<div class="container my-3">
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-8">
+            <div class="bg-primary text-white text-center rounded shadow p-2">
+                <h5>Read post here!!!</h5>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8" *ngIf="userServ.postData?.length > 0; else noPostFound">
+            <div class="card shadow mb-3" *ngFor="let post of userServ.postData;">
+                <div class="card-body">
+                    <a [routerLink]="[ post.postId ]">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                    </a>
+                    <h6 class="card-subtitle mb-2 text-muted">Posted by {{ post.adminName }} / {{ post.date}}</h6>
+                    <p class="card-text">
+                        {{ post.commentCount }} <fa-icon [icon]="faComment"></fa-icon>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <ng-template #noPostFound>
+            <h4 class="text-danger text-center">No Post Found</h4>
+        </ng-template>
+    </div>
+</div>

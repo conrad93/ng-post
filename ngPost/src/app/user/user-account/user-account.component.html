@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 p-5">
+            <h1 class="text-center">User Account</h1>
+            <form #userAccountForm="ngForm" (submit)="userAccountSubmit()">
+                <div class="form-group">
+                    <label>User-name</label>
+                    <input type="text" name="userName" autocomplete="off" class="form-control" #userName="ngModel" [ngModel]="userServ.accountData?.userName" required>
+                    <p class="text-danger" *ngIf="userName.touched && !userName.valid">Please enter your User-name!</p>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="userEmail" autocomplete="off" class="form-control" #userEmail="ngModel" [ngModel]="userServ.accountData?.userEmail" email required>
+                    <p class="text-danger" *ngIf="userEmail.touched && !userEmail.valid">Please enter your email!</p>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="userPassword" autocomplete="off" class="form-control" #userPassword="ngModel" [ngModel]="userServ.accountData?.userPassword" required>
+                    <p class="text-danger" *ngIf="userPassword.touched && !userPassword.valid">Please enter your password!</p>
+                </div>
+                <input type="submit" value="Change" class="btn btn-info" [disabled]="!userAccountForm.valid">
+            </form>
+        </div>
+    </div>
+</div>

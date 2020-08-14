@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 p-5">
+            <div class="card bg-light shadow m-5">
+                <img class="card-img" src="http://localhost/angular/ngPost_api/uploads/newspaper.jpg" alt="Card image">
+                <div class="card-img-overlay">
+                    <div class="card-title text-center text-primary">
+                        <span class="display-1">ngPost</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-5">
+            <h1 class="text-center">Admin Registration</h1>
+            <form #adminRegisterForm="ngForm" (submit)="adminRegisterSubmit()">
+                <div class="form-group">
+                    <label>Admin-name</label>
+                    <input type="text" name="adminName" autocomplete="off" class="form-control" #adminName="ngModel" ngModel required>
+                    <p class="text-danger" *ngIf="adminName.touched && !adminName.valid">Please enter your admin-name!</p>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="adminEmail" autocomplete="off" class="form-control" #adminEmail="ngModel" ngModel email required>
+                    <p class="text-danger" *ngIf="adminEmail.touched && !adminEmail.valid">Please enter your email!</p>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="adminPassword" autocomplete="off" class="form-control" #adminPassword="ngModel" ngModel required>
+                    <p class="text-danger" *ngIf="adminPassword.touched && !adminPassword.valid">Please enter your password!</p>
+                </div>
+                <input type="submit" value="Register" class="btn btn-info" [disabled]="!adminRegisterForm.valid">
+            </form>
+            <p class="my-3"><a routerLink="/adminLogin">Login here.</a></p>
+        </div>
+    </div>
+</div>

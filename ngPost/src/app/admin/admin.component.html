@@ -1,0 +1,79 @@
+<!-- main nav -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <a class="navbar-brand">ngPost</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" (click)="isCollapsed = !isCollapsed" data-target="#navbarSupportedContent">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" [collapse]="isCollapsed" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown" dropdown>
+        <a class="nav-link dropdown-toggle" dropdownToggle id="navbarDropdown" role="button" data-toggle="dropdown">
+          <fa-icon [icon]="faUserShield"></fa-icon>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="navbarDropdown">
+          <div class="bg-primary text-white">
+            <h5 class="ml-2">{{ sessionAdminName }}</h5>
+            <span class="ml-2">Available</span>
+          </div>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" routerLinkActive="active" routerLink="adminAccount">
+            <fa-icon [icon]="faUser"></fa-icon>
+            Account
+          </a>
+          <a class="dropdown-item" (click)="adminLogout()">
+            <fa-icon [icon]="faSignOutAlt"></fa-icon>
+            Sign-out
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+<!-- main nav end -->
+<div class="row">
+<!-- side nav -->
+  <div class="col-md-2 pr-0">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="sideNav">
+      <a class="d-xl-none d-lg-none navbar-brand">Menu</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" (click)="isCollapsed2 = !isCollapsed2" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" [collapse]="isCollapsed2" id="navbarNav">
+        <ul class="navbar-nav flex-column">
+          <li class="nav-item ">
+            <a class="nav-link" routerLinkActive="active" routerLink="dashboard">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="users">Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link caret" data-toggle="collapse" (click)="isCollapsed3 = !isCollapsed3" data-target="#submenu-3">
+              Post
+              <fa-icon [icon]="faCaretDown"></fa-icon>
+            </a>
+            <div id="submenu-3" class="collapse submenu" [collapse]="isCollapsed3">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link" routerLinkActive="active" routerLink="viewPost">View post</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLinkActive="active" routerLink="addPost">Add post</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+<!-- side nav end -->
+<!-- content -->  
+  <div class="col-md-10 pl-0">
+    <router-outlet></router-outlet>
+<!-- footer -->    
+    <app-footer></app-footer>
+<!-- footer end -->    
+  </div>
+<!-- content end -->  
+</div>

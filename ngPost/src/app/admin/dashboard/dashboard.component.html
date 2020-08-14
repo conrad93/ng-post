@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto p-5">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Posts</h5>
+                    <p class="card-text">Count = {{ userServ.postData?.length }}</p>
+                    <a routerLink="/admin/viewPost" class="btn btn-warning">view</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mx-auto p-5">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text">Count = {{ adminServ.usersData?.length }}</p>
+                    <a routerLink="/admin/users" class="btn btn-warning">view</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

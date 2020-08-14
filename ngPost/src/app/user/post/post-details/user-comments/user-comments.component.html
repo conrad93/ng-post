@@ -1,0 +1,47 @@
+<hr class="my-3">
+<form class="card-text" #addCommentForm="ngForm" (submit)="addCommentSubmit()">
+    <div class="form-group">
+        <input class="form-control" type="text" name="userComment" autocomplete="off" placeholder="Add comment..." #userComment="ngModel" ngModel required>
+    </div>
+    <div class="form-group">
+        <input type="reset" class="btn btn-warning mr-3" value="Cancel" [disabled]="!addCommentForm.valid">
+        <input type="submit" class="btn btn-primary" value="Post" [disabled]="!addCommentForm.valid">
+    </div>
+</form>
+<hr class="my-3">
+<div *ngIf="userServ.commentsData?.length > 0; else noCommentFound">
+    <div *ngFor="let comments of userServ.commentsData; let i = index;">
+        <small class="card-text text-muted">Comment by {{ comments.userName }} / {{ comments.date }}</small>
+        <p class="card-text">{{ comments.comment }}</p>
+        <p class="card-text text-right" *ngIf="sessionUserId == comments.userId">
+            <button class="btn btn-sm btn-primary mr-2" (click)="editCommentModal(editCommentTemplate, comments.commentId, i)">Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteComment(comments.commentId, i)">Delete</button>
+        </p>
+        <hr class="my-3">
+    </div>
+</div>
+<ng-template #noCommentFound>
+    <h4 class="text-danger text-center">No Comment Found</h4>
+    <hr class="my-3">
+</ng-template>
+<ng-template #editCommentTemplate>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Edit Comment</h5>
+      <button type="button" class="close" data-dismiss="modal" (click)="modalRef.hide()">
+        <span>&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #editCommentForm="ngForm" (submit)="editCommentSubmit(editCommentForm)">
+        <div class="form-group">
+            <input class="form-control" type="text" name="editUserComment" #editUserComment="ngModel" [ngModel]="userServ.singleCommentData?.comment" required>
+        </div>
+        <div class="form-group">
+            <input type="reset" class="btn btn-warning mr-3" value="Clear" [disabled]="!editCommentForm.valid">
+            <input type="submit" class="btn btn-primary" value="Save" [disabled]="!editCommentForm.valid">
+        </div>
+      </form>  
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 p-5">
+            <div class="card bg-light shadow m-5">
+                <img class="card-img" src="http://localhost/angular/ngPost_api/uploads/newspaper.jpg" alt="Card image">
+                <div class="card-img-overlay">
+                    <div class="card-title text-center text-primary">
+                        <span class="display-1">ngPost</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 p-5">
+            <h1 class="text-center">Admin Login</h1>
+            <form #adminLoginForm="ngForm" (submit)="adminLoginSubmit()">
+                <div class="form-group">
+                    <label>Admin-name</label>
+                    <input type="text" name="adminName" autocomplete="off" class="form-control" #adminName="ngModel" ngModel required>
+                    <p class="text-danger" *ngIf="adminName.touched && !adminName.valid">Please enter your admin-name!</p>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="adminPassword" autocomplete="off" class="form-control" #adminPassword="ngModel" ngModel required>
+                    <p class="text-danger" *ngIf="adminPassword.touched && !adminPassword.valid">Please enter your password!</p>
+                </div>
+                <input type="submit" value="Login" class="btn btn-info" [disabled]="!adminLoginForm.valid">
+            </form>
+            <p class="my-3"><a routerLink="/adminRegister">Register here.</a></p>
+        </div>
+    </div>
+</div>

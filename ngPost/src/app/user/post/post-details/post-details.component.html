@@ -1,0 +1,28 @@
+<div class="container my-3">
+    <div class="row justify-content-center mb-3">
+        <div class="col-md-8">
+            <div class="bg-primary text-white text-center rounded shadow p-2">
+                <h5>Read post details here!!!</h5>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8" *ngIf="userServ.postDetailsData != null; else noPostFound">
+            <div class="card shadow">
+                <img class="card-img-top" src="http://localhost/angular/ngPost_api/uploads/{{ userServ.postDetailsData.image }}" alt="Image">
+                <div class="card-body">
+                    <h5 class="card-title">{{ userServ.postDetailsData.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Posted by {{ userServ.postDetailsData.adminName }} / {{ userServ.postDetailsData.date}}</h6>
+                    <p class="card-text">{{  userServ.postDetailsData.description }}</p>
+                    <p class="card-text">
+                        {{ userServ.postDetailsData.commentCount }} <fa-icon [icon]="faComment"></fa-icon>
+                    </p>
+                    <app-user-comments></app-user-comments>
+                </div>
+            </div>
+        </div>
+        <ng-template #noPostFound>
+            <h4 class="text-danger text-center">No Post Found</h4>
+        </ng-template>
+    </div>
+</div>
